@@ -1094,3 +1094,56 @@ body {
     animation: none;
   }
 }
+
+/* ========================================================
+   MOBILE FIX FOR RESULTS SCREEN (< 650px)
+   ======================================================== */
+@media (max-width: 650px) {
+
+  /* 1. Stack "Key Strengths" and "Growth Areas" vertically into 1 column */
+  .profile-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem !important;
+  }
+
+  /* 2. Reduce card side padding (from 1.75rem down to 1rem) so text fits */
+  .results-card {
+    padding: 1.4rem 1.1rem !important;
+    border-radius: 18px !important;
+  }
+
+  /* 3. Trait meta: prevent long titles and percentages from clashing */
+  .trait-meta {
+    font-size: 0.85rem !important;
+    gap: 0.5rem;
+  }
+
+  /* 4. Prevent bullet items from indenting too far */
+  .detail-list li {
+    font-size: 0.88rem !important;
+    line-height: 1.45 !important;
+    padding-left: 1.3rem !important;
+    margin-bottom: 0.65rem !important;
+  }
+
+  /* 5. Make career cards stack comfortably on small screens */
+  .careers-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .career-pill {
+    padding: 0.85rem 1rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* 6. Header scaling */
+  .result-title {
+    font-size: 1.65rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .result-tagline {
+    font-size: 0.95rem !important;
+  }
+}
