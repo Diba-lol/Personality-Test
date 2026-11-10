@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Healer | Personality Blueprint</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <main class="hero-container">
+
+    <!-- Healer Brand Logo Orb -->
+    <!-- Healer Brand Logo -->
+    <header class="brand-header">
+      <img src="./images/healer-logo.webp" alt="Healer Logo" class="brand-logo" />
+      <h2 class="brand-title">Healer</h2>
+      <div class="kicker-divider">
+        <span class="line"></span>
+        <span class="kicker-text">PERSONALITY ARCHETYPE QUIZ</span>
+        <span class="line"></span>
+      </div>
+    </header>
+
+    <!-- Main Heading -->
+    <h1 class="hero-heading">Discover Your Personality Blueprint</h1>
+    <p class="hero-subtitle">
+      Based on psychometric forced-choice theory, this assessment uncovers your core cognitive traits, natural
+      strengths, and optimal career pathways.
+    </p>
+
+    <!-- 1. PHASE 1, 2, 3 CARDS -->
+    <section class="steps-grid">
+
+      <article class="step-card">
+        <div class="step-header">
+          <span class="step-badge">Phase 01</span>
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3c.8 5 4 8.2 9 9-5 .8-8.2 4-9 9-.8-5-4-8.2-9-9 5-.8 8.2-4 9-9z" />
+            </svg>
+          </span>
+        </div>
+        <h3>Decode Your Instincts</h3>
+        <p>Respond truthfully to 20 intuitive statements from Agree to Disagree.</p>
+      </article>
+
+      <article class="step-card">
+        <div class="step-header">
+          <span class="step-badge">Phase 02</span>
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M5 20v-9M12 20V4M19 20v-6" />
+            </svg>
+          </span>
+        </div>
+        <h3>Unpack Your Blueprint</h3>
+        <p>Explore your trait breakdown, primary strengths, and growth zones.</p>
+      </article>
+
+      <article class="step-card">
+        <div class="step-header">
+          <span class="step-badge">Phase 03</span>
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 17l6-6 4 4 6-8" />
+              <path d="M15 7h5v5" />
+            </svg>
+          </span>
+        </div>
+        <h3>Align Your Career Path</h3>
+        <p>Find high-impact roles and workplace cultures suited to your archetype.</p>
+      </article>
+
+    </section>
+
+    <!-- 2. NAME INPUT & START BUTTON (BELOW CARDS) -->
+    <form class="input-action-card" action="personality-test.html" method="GET">
+      <label for="userNameInput" class="input-label">ENTER YOUR NAME TO BEGIN</label>
+      <input type="text" id="userNameInput" name="userName" class="name-input" placeholder="Your Name..." required
+        autocomplete="off" />
+      <button type="submit" class="btn-start-gradient">Take Test &rarr;</button>
+    </form>
+
+  </main>
+
+</body>
+
+</html>

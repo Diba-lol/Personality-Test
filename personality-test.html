@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Healer | Personality Assessment Test</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ================= QUIZ SCREEN ================= -->
+  <main id="quizScreen" class="quiz-container">
+
+    <!-- Sticky Progress Header -->
+    <header class="quiz-header">
+      <div class="quiz-brand-mini">
+        <img src="./images/healer-logo.webp" alt="Healer Logo" class="brand-logo-small" />
+        <span>Healer Assessment Engine</span>
+      </div>
+      <div class="progress-info">
+        <span id="progressText">Progress: 0 / 20 answered</span>
+        <span id="progressPercent">0%</span>
+      </div>
+      <div class="progress-bar-track">
+        <div id="progressBarFill" class="progress-bar-fill"></div>
+      </div>
+    </header>
+
+    <!-- Dynamic 20 Questions Container -->
+    <section id="questionsContainer" class="questions-list"></section>
+
+    <!-- Submit Action -->
+    <div class="quiz-footer">
+      <button id="submitQuizBtn" class="btn-start-gradient" disabled>Complete & View Results &rarr;</button>
+    </div>
+  </main>
+
+  <!-- ================= RESULTS SCREEN ================= -->
+  <section id="resultsScreen" class="results-container" style="display: none;">
+    <header class="results-header">
+      <img src="./images/healer-logo.webp" alt="Healer Logo" class="brand-logo-small" style="margin: 0 auto 0.8rem;" />
+      <span class="step-badge">Assessment Complete</span>
+      <h1 id="resultTypeTitle" class="result-title">The Innovative Architect</h1>
+      <p id="resultTypeTagline" class="result-tagline">Creative, fast-learning, and driven to design innovative digital
+        solutions.</p>
+    </header>
+
+    <!-- Trait Breakdown Sliders -->
+    <div class="results-card">
+      <h3 class="card-heading">Core Traits Breakdown</h3>
+      <div id="traitsList" class="traits-container"></div>
+    </div>
+
+    <!-- Strengths & Weaknesses 2-Column Grid -->
+    <div class="profile-grid">
+      <div class="results-card">
+        <h3 class="card-heading text-success">Key Strengths</h3>
+        <ul id="strengthsList" class="detail-list"></ul>
+      </div>
+      <div class="results-card">
+        <h3 class="card-heading text-danger">Growth Areas & Blindspots</h3>
+        <ul id="weaknessesList" class="detail-list"></ul>
+      </div>
+    </div>
+
+    <!-- Career Matches -->
+    <div class="results-card highlight-card">
+      <h3 class="card-heading">Recommended Careers & Roles</h3>
+      <p class="section-desc">Positions where your cognitive style provides the highest competitive advantage:</p>
+      <div id="careersGrid" class="careers-grid"></div>
+    </div>
+
+    <div class="results-actions">
+      <a href="index.html" class="btn-secondary">Take Assessment Again</a>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
