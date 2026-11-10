@@ -738,6 +738,65 @@ body {
   }
 }
 
+/* ========================================================
+   MOBILE RESPONSIVE FIX FOR QUESTION CARDS (< 600px)
+   ======================================================== */
+@media (max-width: 600px) {
+
+  /* 1. Reduce card side padding so the content has room */
+  .question-item {
+    padding: 1.6rem 0.9rem 1.4rem;
+    border-radius: 18px;
+  }
+
+  /* 2. Scale down big background watermark number */
+  .question-item::after {
+    font-size: 3.5rem;
+    right: 0.8rem;
+    top: 0.2rem;
+  }
+
+  /* 3. Adjust statement font and spacing */
+  .statement-text {
+    font-size: 1.05rem;
+    line-height: 1.45;
+    margin-bottom: 1.4rem;
+    max-width: 100%;
+  }
+
+  /* 4. Proportionally scale down circles to fit 320px - 380px screens */
+  .spectrum-track {
+    --s3: 36px;
+    /* down from 52px */
+    --s2: 30px;
+    /* down from 42px */
+    --s1: 24px;
+    /* down from 34px */
+    --s0: 18px;
+    /* down from 26px */
+    padding: 0.55rem 0.75rem;
+  }
+
+  /* 5. Align track connector line to smaller circle centers */
+  .spectrum-track::before {
+    left: 1.1rem;
+    right: 1.1rem;
+  }
+
+  /* 6. Adjust label text size and spacing */
+  .spectrum-labels {
+    font-size: 0.72rem;
+    padding: 0 0.25rem;
+  }
+
+  /* 7. Ensure sticky progress bar fits snug */
+  .quiz-header {
+    padding: 0.7rem 0.85rem 0.85rem;
+    top: 6px;
+    border-radius: 16px;
+  }
+}
+
 /* ================= 3. RESULTS DASHBOARD STYLES ================= */
 .results-container {
   max-width: 860px;
