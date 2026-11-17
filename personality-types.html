@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Healer | 16 Personality Types</title>
+  <link rel="stylesheet" href="./styles/base.css" />
+  <link rel="stylesheet" href="./styles/characters.css" />
+  <link rel="stylesheet" href="./styles/types.css" />
+</head>
+
+<body>
+
+  <!-- TOP-LEFT BACK BUTTON -->
+  <a href="./index.html" class="floating-home-btn">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    <span>Back to Quiz</span>
+  </a>
+
+  <main class="types-page-container">
+    <header class="brand-header" style="text-align: center;">
+      <img src="logo.png" alt="Healer Logo" class="brand-logo" onerror="this.style.display='none';" />
+      <h2 class="brand-title">Healer</h2>
+      <div class="kicker-divider" style="margin: 0 auto;">
+        <span class="line"></span>
+        <span class="kicker-text">16 ARCHETYPES DIRECTORY</span>
+        <span class="line"></span>
+      </div>
+      <h1 class="hero-heading">Personality Types</h1>
+      <p class="hero-subtitle">
+        Explore all 16 personality archetypes across four distinct cognitive families. Each archetype represents a
+        unique way of thinking, connecting, and approaching life.
+      </p>
+
+      <!-- Filter by Category (No Introvert/Extrovert separation here) -->
+      <div class="type-filter-bar">
+        <button type="button" class="filter-pill active" onclick="filterTypes('ALL', this)">All 16 Types</button>
+        <button type="button" class="filter-pill" onclick="filterTypes('Analysts', this)">Analysts (4)</button>
+        <button type="button" class="filter-pill" onclick="filterTypes('Diplomats', this)">Diplomats (4)</button>
+        <button type="button" class="filter-pill" onclick="filterTypes('Sentinels', this)">Sentinels (4)</button>
+        <button type="button" class="filter-pill" onclick="filterTypes('Explorers', this)">Explorers (4)</button>
+      </div>
+    </header>
+
+    <!-- All 16 Animated Characters Render Here (4 per category) -->
+    <div id="typesDirectoryContainer"></div>
+
+    <div class="results-actions" style="margin-top: 3.5rem; text-align: center;">
+      <a href="index.html" class="btn-start-gradient" style="text-decoration: none; display: inline-block;">
+        Take the Test to Find Your Match &rarr;
+      </a>
+    </div>
+  </main>
+
+  <script src="./scripts/characters.js"></script>
+  <script src="./scripts/types-data.js"></script>
+  <script src="./scripts/types-page.js"></script>
+
+</body>
+
+</html>

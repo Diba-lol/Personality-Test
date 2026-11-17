@@ -1,0 +1,160 @@
+/* ========================================================
+   CHARACTERS – animated premium characters
+   Used on: results screen + personality types page
+   ======================================================== */
+
+.fullbody-character-stage {
+  position: relative;
+  width: 210px;
+  height: 250px;
+  margin: 0.8rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fullbody-svg {
+  position: relative;
+  z-index: 1;
+  width: 180px;
+  height: 240px;
+  overflow: visible;
+  filter: drop-shadow(0 14px 18px rgba(79, 70, 229, .18));
+}
+
+.char-body-float {
+  animation: fullBodyFloat 3.4s ease-in-out infinite;
+}
+
+.char-arm-right {
+  transform-origin: 122px 102px;
+  animation: armWave 3s ease-in-out infinite;
+}
+
+.char-arm-left {
+  transform-origin: 55px 102px;
+  animation: armSwingLeft 3.4s ease-in-out infinite;
+}
+
+/* transform-box keeps the blink / pulse centred on the shape itself */
+.char-eye,
+.prop-pulse,
+.char-ground,
+.char-aura-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.char-eye {
+  animation: eyeBlink 4.2s infinite;
+}
+
+.prop-pulse {
+  animation: propGlow 2.2s ease-in-out infinite;
+}
+
+.char-ground {
+  animation: groundPulse 3.4s ease-in-out infinite;
+}
+
+.char-aura-ring {
+  animation: auraBreath 4s ease-in-out infinite;
+}
+
+@keyframes fullBodyFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes groundPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(.86);
+    opacity: .7;
+  }
+}
+
+@keyframes auraBreath {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes armWave {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes armSwingLeft {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes eyeBlink {
+
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes propGlow {
+
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .fullbody-svg *,
+  .fullbody-character-stage::before,
+  .fullbody-character-stage::after {
+    animation: none !important;
+  }
+}

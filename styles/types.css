@@ -1,0 +1,181 @@
+/* ========================================================
+   TYPES – 16 personality types, floating characters on a chain
+   ======================================================== */
+
+.types-page-container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* ---------- Filter buttons ---------- */
+.type-filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 1.8rem 0 2.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  border: 1.5px solid #cbd5e1;
+  background: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-pill.active,
+.filter-pill:hover {
+  background: linear-gradient(90deg, #101A31, #3375DB);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* ---------- Category headings ---------- */
+.category-banner-section {
+  margin-bottom: 4rem;
+}
+
+.category-header {
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.category-big-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #101A31, #3375DB);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.4rem;
+}
+
+.category-subtitle {
+  color: #64748b;
+  font-size: 0.98rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ---------- Chain row (4 characters holding one chain) ---------- */
+.char-chain-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.char-float {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 0.5rem;
+}
+
+.char-float .fullbody-character-stage {
+  z-index: 2;
+}
+
+/* the chain: hangs from this character's right hand to the next one's left hand */
+.char-float:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 156px;
+  left: calc(50% + 46px);
+  width: calc(100% - 81px);
+  height: 34px;
+  border-bottom: 7px dotted #a5b4fc;
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  filter: drop-shadow(0 3px 4px rgba(99, 102, 241, .35));
+  animation: chainSway 3.4s ease-in-out infinite;
+}
+
+@keyframes chainSway {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* each character starts its movement at a different time */
+.char-float:nth-child(2) .fullbody-svg *,
+.char-float:nth-child(2)::after {
+  animation-delay: -.9s;
+}
+
+.char-float:nth-child(3) .fullbody-svg *,
+.char-float:nth-child(3)::after {
+  animation-delay: -1.8s;
+}
+
+.char-float:nth-child(4) .fullbody-svg * {
+  animation-delay: -2.7s;
+}
+
+/* ---------- Short text under each character ---------- */
+.char-role {
+  margin-top: 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6366f1;
+}
+
+.char-name {
+  margin: 0.15rem 0 0.3rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #101A31, #3375DB);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.char-desc {
+  max-width: 210px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #64748b;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- Tablet: 2 per row ---------- */
+@media (max-width: 960px) {
+  .char-chain-row {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 2.5rem;
+  }
+
+  .char-float:nth-child(2n)::after {
+    display: none;
+  }
+}
+
+/* ---------- Mobile: 1 per row ---------- */
+@media (max-width: 560px) {
+  .char-chain-row {
+    grid-template-columns: 1fr;
+  }
+
+  .char-float::after {
+    display: none !important;
+  }
+}
