@@ -1,158 +1,171 @@
 /* ========================================================
-   CHARACTERS – animated premium characters
-   Used on: results screen + personality types page
+   CHARACTERS – premium 3D character images
+   (types page + results page)
    ======================================================== */
 
 .fullbody-character-stage {
+  --acc: #7C63F6;
   position: relative;
-  width: 210px;
-  height: 250px;
-  margin: 0.8rem auto;
+  width: 260px;
+  aspect-ratio: 3 / 4;
+  margin: 0.4rem auto;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  transform-style: preserve-3d;
+  /* tilt + lift are controlled by --rx --ry --lift --sc (smooth) */
+  transform: perspective(900px) translateY(var(--lift, 0px)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--sc, 1));
+  transition: transform .45s cubic-bezier(.2, .8, .2, 1);
+  will-change: transform;
 }
 
-.fullbody-svg {
+/* ---------- glass orb behind the character ---------- */
+.fullbody-character-stage::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 9%;
+  width: 86%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, .95) 0, rgba(255, 255, 255, 0) 40%),
+    radial-gradient(circle at 72% 80%, color-mix(in srgb, var(--acc) 60%, transparent) 0, transparent 62%),
+    linear-gradient(160deg, color-mix(in srgb, var(--acc) 20%, #fff) 0%, color-mix(in srgb, var(--acc) 44%, #ede9fe) 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, .75),
+    inset 0 -22px 44px color-mix(in srgb, var(--acc) 38%, transparent),
+    0 34px 54px -24px color-mix(in srgb, var(--acc) 75%, transparent);
+  transform: translate3d(-50%, 0, -40px);
+  animation: orbBreath 5.2s ease-in-out infinite;
+  transition: filter .45s ease;
+}
+
+/* ---------- glowing arc that circles the orb ---------- */
+.fullbody-character-stage::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 3.5%;
+  width: 98%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg,
+      transparent 0 58%,
+      color-mix(in srgb, var(--acc) 85%, transparent) 88%,
+      #fff 100%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--acc) 80%, transparent));
+  transform: translate3d(-50%, 0, -60px) rotate(0deg);
+  animation: ringSweep 7s linear infinite;
+  opacity: .9;
+  transition: opacity .45s ease;
+}
+
+/* ---------- the character ---------- */
+.char-img {
   position: relative;
-  z-index: 1;
-  width: 180px;
-  height: 240px;
-  overflow: visible;
-  filter: drop-shadow(0 14px 18px rgba(79, 70, 229, .18));
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom;
+  user-select: none;
+  filter: drop-shadow(0 5px 2px rgba(30, 27, 75, .3));
+  /* the picture is cut at the bottom – fade it out softly */
+  -webkit-mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+  transform: translate3d(0, 0, 40px);
+  animation: charFloat 5s ease-in-out infinite;
 }
 
-.char-body-float {
-  animation: fullBodyFloat 3.4s ease-in-out infinite;
+/* ---------- twinkling sparkles ---------- */
+.spark {
+  position: absolute;
+  z-index: 3;
+  width: 13px;
+  height: 13px;
+  background: var(--acc);
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  filter: drop-shadow(0 0 5px var(--acc));
+  animation: twinkle 3.2s ease-in-out infinite;
 }
 
-.char-arm-right {
-  transform-origin: 122px 102px;
-  animation: armWave 3s ease-in-out infinite;
+.spark.s1 {
+  top: 16%;
+  left: 6%;
 }
 
-.char-arm-left {
-  transform-origin: 55px 102px;
-  animation: armSwingLeft 3.4s ease-in-out infinite;
+.spark.s2 {
+  top: 34%;
+  right: 3%;
+  width: 9px;
+  height: 9px;
+  animation-delay: -1.1s;
 }
 
-/* transform-box keeps the blink / pulse centred on the shape itself */
-.char-eye,
-.prop-pulse,
-.char-ground,
-.char-aura-ring {
-  transform-box: fill-box;
-  transform-origin: center;
+.spark.s3 {
+  bottom: 38%;
+  left: 1%;
+  width: 8px;
+  height: 8px;
+  animation-delay: -2.1s;
 }
 
-.char-eye {
-  animation: eyeBlink 4.2s infinite;
-}
-
-.prop-pulse {
-  animation: propGlow 2.2s ease-in-out infinite;
-}
-
-.char-ground {
-  animation: groundPulse 3.4s ease-in-out infinite;
-}
-
-.char-aura-ring {
-  animation: auraBreath 4s ease-in-out infinite;
-}
-
-@keyframes fullBodyFloat {
+/* ---------- animations ---------- */
+@keyframes charFloat {
 
   0%,
   100% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 40px);
   }
 
   50% {
-    transform: translateY(-6px);
+    transform: translate3d(0, -9px, 40px);
   }
 }
 
-@keyframes groundPulse {
+@keyframes orbBreath {
 
   0%,
   100% {
-    transform: scale(1);
-    opacity: 1;
+    transform: translate3d(-50%, 0, -40px) scale(1);
   }
 
   50% {
-    transform: scale(.86);
-    opacity: .7;
+    transform: translate3d(-50%, 0, -40px) scale(1.045);
   }
 }
 
-@keyframes auraBreath {
-
-  0%,
-  100% {
-    transform: scale(1);
+@keyframes ringSweep {
+  from {
+    transform: translate3d(-50%, 0, -60px) rotate(0deg);
   }
 
-  50% {
-    transform: scale(1.06);
+  to {
+    transform: translate3d(-50%, 0, -60px) rotate(360deg);
   }
 }
 
-@keyframes armWave {
+@keyframes twinkle {
 
   0%,
   100% {
-    transform: rotate(0deg);
-  }
-
-  50% {
-    transform: rotate(-8deg);
-  }
-}
-
-@keyframes armSwingLeft {
-
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-
-  50% {
-    transform: rotate(5deg);
-  }
-}
-
-@keyframes eyeBlink {
-
-  0%,
-  92%,
-  100% {
-    transform: scaleY(1);
-  }
-
-  95% {
-    transform: scaleY(0.1);
-  }
-}
-
-@keyframes propGlow {
-
-  0%,
-  100% {
-    opacity: 0.85;
-    transform: scale(1);
+    opacity: .25;
+    transform: scale(.5) rotate(0deg);
   }
 
   50% {
     opacity: 1;
-    transform: scale(1.12);
+    transform: scale(1.15) rotate(45deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
 
-  .fullbody-svg *,
+  .char-img,
+  .spark,
   .fullbody-character-stage::before,
   .fullbody-character-stage::after {
     animation: none !important;

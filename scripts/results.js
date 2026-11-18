@@ -50,7 +50,7 @@ function generateResults() {
   document.getElementById("resultTypeTitle").textContent = `${currentUserName}: The ${matchedProfile.name}`;
   document.getElementById("resultRoleGroup").textContent =
     `Recommended Match • ${matchedProfile.category} Family (${matchedProfile.roleTag})`;
-  document.getElementById("characterStage").innerHTML = matchedProfile.svg;
+  document.getElementById("characterStage").innerHTML = matchedProfile.imgHTML;
   document.getElementById("resultTypeTagline").textContent = matchedProfile.tagline;
 
   // document.getElementById("introvertPctText").textContent = `${introvertPct}%`;
