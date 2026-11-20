@@ -25,30 +25,86 @@
     <!-- HERO SPLIT: CHARACTER LEFT + 5-DIMENSION BREAKDOWN RIGHT -->
     <section class="results-hero-grid">
 
-      <!-- LEFT COLUMN: PERSONALITY CHARACTER SHOWCASE -->
-      <header class="results-header results-hero-left">
-        <span id="dominantEnergyBadge" class="energy-main-pill"></span>
-        <h1 id="resultTypeTitle" class="result-title"></h1>
-        <p id="resultRoleGroup" class="result-group-subtitle"></p>
+      <!-- LEFT COLUMN: 3D FLIP PERSONALITY CHARACTER CARD -->
+      <header id="characterFlipCard" class="results-header results-hero-left flip-card" tabindex="0"
+        aria-label="Personality character card. Hover or tap to view definition.">
+        <div class="flip-card-inner">
 
-        <!-- UPGRADED ANIMATED CHARACTER STAGE -->
-        <div class="hero-character-showcase">
-          <div class="hero-aura-backdrop" aria-hidden="true">
-            <span class="aura-nebula"></span>
-            <span class="aura-portal-orb"></span>
-            <span class="aura-ring-outer"></span>
-            <span class="aura-ring-inner"></span>
-            <span class="aura-pedestal"></span>
-            <span class="aura-mote m1"></span>
-            <span class="aura-mote m2"></span>
-            <span class="aura-mote m3"></span>
-            <span class="aura-mote m4"></span>
+          <!-- FRONT SIDE: CHARACTER SHOWCASE -->
+          <div class="flip-card-face flip-card-front">
+            <span class="flip-hint" aria-hidden="true">Hover to flip ↻</span>
+            <span id="dominantEnergyBadge" class="energy-main-pill"></span>
+            <h1 id="resultTypeTitle" class="result-title"></h1>
+            <p id="resultRoleGroup" class="result-group-subtitle"></p>
+
+            <!-- UPGRADED ANIMATED CHARACTER STAGE -->
+            <div class="hero-character-showcase">
+              <div class="hero-aura-backdrop" aria-hidden="true">
+                <span class="aura-nebula"></span>
+                <span class="aura-portal-orb"></span>
+                <span class="aura-ring-outer"></span>
+                <span class="aura-ring-inner"></span>
+                <span class="aura-pedestal"></span>
+                <span class="aura-mote m1"></span>
+                <span class="aura-mote m2"></span>
+                <span class="aura-mote m3"></span>
+                <span class="aura-mote m4"></span>
+              </div>
+
+              <div id="characterStage" class="fullbody-character-stage"></div>
+            </div>
+
+            <p id="resultTypeTagline" class="result-tagline"></p>
           </div>
 
-          <div id="characterStage" class="fullbody-character-stage"></div>
-        </div>
+          <!-- BACK SIDE: ANIMATED COLLECTOR DEFINITION CARD -->
+          <div class="flip-card-face flip-card-back">
+            <!-- Animated background layer -->
+            <div class="flip-back-bg" aria-hidden="true">
+              <span class="flip-orb orb-1"></span>
+              <span class="flip-orb orb-2"></span>
+              <span id="flipBackWatermark" class="flip-watermark"></span>
+            </div>
 
-        <p id="resultTypeTagline" class="result-tagline"></p>
+            <!-- Top Row -->
+            <div class="flip-back-top">
+              <span id="flipBackCode" class="flip-back-code"></span>
+              <span id="flipBackFamily" class="flip-back-family"></span>
+            </div>
+
+            <!-- Title -->
+            <div class="flip-back-hero">
+              <h2 id="flipBackTitle" class="flip-back-title"></h2>
+              <p id="flipBackRole" class="flip-back-role"></p>
+            </div>
+
+            <!-- Compact Definition -->
+            <div class="flip-back-section">
+              <span class="flip-back-label">Who You Are</span>
+              <p id="flipBackDefinition" class="flip-back-text"></p>
+            </div>
+
+            <!-- Animated Visual Vibe Bars (No Extra Paragraphs) -->
+            <div id="flipBackStats" class="flip-back-stats"></div>
+
+            <!-- Identity Box -->
+            <div class="flip-back-section flip-back-identity-box">
+              <span id="flipBackIdentityLabel" class="flip-back-label"></span>
+              <p id="flipBackIdentityDesc" class="flip-back-text"></p>
+            </div>
+
+            <!-- Bottom Tags + Collector Footer -->
+            <div class="flip-back-footer">
+              <div id="flipBackTags" class="flip-back-tags"></div>
+              <div class="flip-collector-bar">
+                <span class="collector-dot"></span>
+                <span>HEALER ARCHETYPE CARD</span>
+                <span class="collector-shine">✦</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </header>
 
       <!-- RIGHT COLUMN: FIVE PERSONALITY DIMENSIONS BREAKDOWN -->
@@ -60,51 +116,141 @@
 
     </section>
 
-    <!-- 2. KEY FEATURES (CLEAN 4 PILLS) -->
-    <div class="results-card">
-      <h3 class="card-heading">Key Features &amp; Core Traits</h3>
+    <!-- 2. UPGRADED KEY FEATURES (INTERACTIVE SPOTLIGHT TILES) -->
+    <section class="results-card features-upgrade-card">
+      <div class="section-top-row">
+        <div>
+          <h3 class="card-heading">Key Features &amp; Core Traits</h3>
+          <p class="section-subcopy">The signature mental habits that define how you think, decide, and show up.</p>
+        </div>
+        <span class="section-pill">Core DNA</span>
+      </div>
       <div id="keyFeaturesGrid" class="key-features-grid"></div>
-    </div>
+    </section>
 
-    <!-- 3. STRENGTHS & WEAKNESSES PREMIUM CARDS -->
+    <!-- 3. CLICK-TO-FLIP STRENGTHS & WEAKNESSES CARDS -->
     <div class="sw-grid">
-      <article class="results-card sw-card sw-strengths">
-        <div class="sw-header">
-          <div class="sw-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 3l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.3 6.7 19.1l1-5.8-4.2-4.1 5.9-.9L12 3z" />
-            </svg>
-          </div>
-          <div class="sw-heading-group">
+      <!-- STRENGTHS FLIP CARD -->
+      <article class="sw-flip-card sw-strengths" tabindex="0" role="button" aria-expanded="false"
+        aria-label="Core Strengths. Click to flip and reveal list.">
+        <div class="sw-flip-inner">
+          <!-- FRONT COVER -->
+          <div class="sw-flip-face sw-flip-front results-card">
+            <span class="sw-tap-pill">Tap to Reveal ↻</span>
+            <div class="sw-cover-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.3 6.7 19.1l1-5.8-4.2-4.1 5.9-.9L12 3z" />
+              </svg>
+            </div>
             <span class="sw-kicker">What Drives You</span>
-            <h3 class="sw-title">Core Strengths</h3>
+            <h3 class="sw-cover-title">Core Strengths</h3>
+            <p class="sw-cover-desc">Discover the natural superpowers that make you stand out.</p>
+            <span id="strengthsCountBadge" class="sw-count-pill">4 Key Strengths</span>
+          </div>
+
+          <!-- BACK LIST -->
+          <div class="sw-flip-face sw-flip-back results-card">
+            <div class="sw-back-header">
+              <div class="sw-header">
+                <div class="sw-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 3l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.3 6.7 19.1l1-5.8-4.2-4.1 5.9-.9L12 3z" />
+                  </svg>
+                </div>
+                <div class="sw-heading-group">
+                  <span class="sw-kicker">What Drives You</span>
+                  <h3 class="sw-title">Core Strengths</h3>
+                </div>
+              </div>
+              <span class="sw-tap-pill">Flip Back ↺</span>
+            </div>
+            <ul id="strengthsList" class="sw-list"></ul>
           </div>
         </div>
-        <ul id="strengthsList" class="sw-list"></ul>
       </article>
 
-      <article class="results-card sw-card sw-weaknesses">
-        <div class="sw-header">
-          <div class="sw-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M12 8v4M12 16h.01" />
-            </svg>
-          </div>
-          <div class="sw-heading-group">
+      <!-- WEAKNESSES FLIP CARD -->
+      <article class="sw-flip-card sw-weaknesses" tabindex="0" role="button" aria-expanded="false"
+        aria-label="Weaknesses. Click to flip and reveal list.">
+        <div class="sw-flip-inner">
+          <!-- FRONT COVER -->
+          <div class="sw-flip-face sw-flip-front results-card">
+            <span class="sw-tap-pill">Tap to Reveal ↻</span>
+            <div class="sw-cover-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 8v4M12 16h.01" />
+              </svg>
+            </div>
             <span class="sw-kicker">Growth Zones</span>
-            <h3 class="sw-title">Weaknesses</h3>
+            <h3 class="sw-cover-title">Weaknesses</h3>
+            <p class="sw-cover-desc">Uncover your hidden blind spots and areas to level up.</p>
+            <span id="weaknessesCountBadge" class="sw-count-pill">4 Growth Zones</span>
+          </div>
+
+          <!-- BACK LIST -->
+          <div class="sw-flip-face sw-flip-back results-card">
+            <div class="sw-back-header">
+              <div class="sw-header">
+                <div class="sw-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 8v4M12 16h.01" />
+                  </svg>
+                </div>
+                <div class="sw-heading-group">
+                  <span class="sw-kicker">Growth Zones</span>
+                  <h3 class="sw-title">Weaknesses</h3>
+                </div>
+              </div>
+              <span class="sw-tap-pill">Flip Back ↺</span>
+            </div>
+            <ul id="weaknessesList" class="sw-list"></ul>
           </div>
         </div>
-        <ul id="weaknessesList" class="sw-list"></ul>
       </article>
     </div>
+
+    <!-- 3.5 CAREER PATH CLARITY (DEEP EXPLANATION & INTERACTIVE CARDS) -->
+    <section class="results-card career-paths-card">
+      <div class="career-header">
+        <div>
+          <h3 class="card-heading">Career Path Clarity</h3>
+          <p id="careerClarityNote" class="career-clarity-note"></p>
+        </div>
+        <span id="careerWorkStyleBadge" class="career-style-badge"></span>
+      </div>
+
+      <div id="careerPathsGrid" class="career-paths-grid"></div>
+    </section>
+
+    <!-- 3.6 NEW: LIFE & GROWTH TOOLKIT (INTERACTIVE TABS) -->
+    <section class="results-card toolkit-card">
+      <div class="toolkit-header">
+        <div>
+          <h3 class="card-heading">Personal Life &amp; Growth Toolkit</h3>
+          <p class="toolkit-subcopy">Practical insights on your relationships, communication style, and next-level
+            habits.</p>
+        </div>
+        <div class="toolkit-tabs" role="tablist" aria-label="Personal insights tabs">
+          <button type="button" class="toolkit-tab is-active" data-tab="matches" role="tab"
+            aria-selected="true">Compatibility</button>
+          <button type="button" class="toolkit-tab" data-tab="comm" role="tab"
+            aria-selected="false">Communication</button>
+          <button type="button" class="toolkit-tab" data-tab="habits" role="tab" aria-selected="false">Growth
+            Habits</button>
+        </div>
+      </div>
+
+      <div id="toolkitContent" class="toolkit-content"></div>
+    </section>
 
     <!-- 4. BUTTON TO EXPLORE ALL PERSONALITY TYPES -->
     <div class="results-card explore-cta-banner">
       <div class="explore-cta-text">
         <h3>Explore All Personality Types</h3>
-        <p>View all 16 personality archetypes and animated characters across Analysts, Diplomats, Sentinels, and Explorers.</p>
+        <p>View all 16 personality archetypes and animated characters across Analysts, Diplomats, Sentinels, and
+          Explorers.</p>
       </div>
       <div class="results-actions-row">
         <a href="personality-types.html" class="btn-start-gradient"

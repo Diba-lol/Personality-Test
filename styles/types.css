@@ -307,3 +307,32 @@
     animation: none;
   }
 }
+
+/* ========================================================
+   GPU-ACCELERATED SCROLL REVEAL ANIMATIONS
+   ======================================================== */
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0) scale(0.98);
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+}
+
+.category-header.scroll-reveal {
+  transform: translate3d(0, 18px, 0);
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,9 +1,7 @@
-// ========================================================
-// TYPES PAGE – 16 character images, 4 per family, no cards
-// Needs: types-data.js loaded first
-// ========================================================
-
 const FAMILIES = ["Analysts", "Diplomats", "Sentinels", "Explorers"];
+
+let charObserver;
+let scrollRevealObserver;
 
 function renderPersonalityTypesDirectory(filterCategory = "ALL") {
   const container = document.getElementById("typesDirectoryContainer");
@@ -35,6 +33,9 @@ function renderPersonalityTypesDirectory(filterCategory = "ALL") {
       </section>
     `;
   }).join("");
+
+  observeVisibleCharacters();
+  initScrollReveal();
 }
 
 // Called by the filter buttons (onclick="filterTypes(...)")
@@ -70,10 +71,7 @@ window.filterTypes = function (categoryValue, btnEl) {
   });
 })();
 
-renderPersonalityTypesDirectory("ALL");
-
-let charObserver;
-
+// ---------- pause off-screen character animations for 60 FPS ----------
 function observeVisibleCharacters() {
   if (charObserver) charObserver.disconnect();
   const cards = document.querySelectorAll(".char-float");
@@ -90,3 +88,48 @@ function observeVisibleCharacters() {
 
   cards.forEach(card => charObserver.observe(card));
 }
+
+// ---------- GPU-accelerated scroll reveal ----------
+function initScrollReveal() {
+  if (scrollRevealObserver) scrollRevealObserver.disconnect();
+
+  const headers = document.querySelectorAll(".category-header");
+  const cards = document.querySelectorAll(".char-float");
+  const targets = [...headers, ...cards];
+
+  if (!targets.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    targets.forEach(el => el.classList.add("is-revealed"));
+    return;
+  }
+
+  headers.forEach(header => {
+    header.classList.add("scroll-reveal");
+    header.style.setProperty("--reveal-delay", "0ms");
+  });
+
+  cards.forEach((card, idx) => {
+    card.classList.add("scroll-reveal");
+    card.style.setProperty("--reveal-delay", `${(idx % 4) * 70}ms`);
+  });
+
+  scrollRevealObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-revealed");
+        scrollRevealObserver.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px"
+    }
+  );
+
+  targets.forEach(el => scrollRevealObserver.observe(el));
+}
+
+// Initial render
+renderPersonalityTypesDirectory("ALL");
