@@ -1,31 +1,126 @@
 // ========================================================
-// QUESTIONS – the 20 statements and the 7-point answer scale
+// QUESTIONS – 60 statements (5 sections × 12) & 7-point scale
+// Dimensions:
+//   1. Energy:   Introverted (I - left) / Extraverted (E - right)
+//   2. Mind:     Intuitive (N - left)   / Observant (S - right)
+//   3. Nature:   Thinking (T - left)    / Feeling (F - right)
+//   4. Tactics:  Judging (J - left)     / Prospecting (P - right)
+//   5. Identity: Assertive (A - left)   / Turbulent (T - right)
 // ========================================================
 
-const questions = [
-  // Energy axis (Introvert vs Extrovert)
-  { id: 0, text: "Going to parties and being with groups makes you feel happy and full of energy.", axis: "energy", polarity: "E" },
-  { id: 1, text: "After being around people all day, you need quiet time alone to rest your mind.", axis: "energy", polarity: "I" },
-  { id: 2, text: "You like to be the first one to say hello and talk to new people.", axis: "energy", polarity: "E" },
-  { id: 3, text: "You like talking to just one person more than talking in a big, loud group.", axis: "energy", polarity: "I" },
-  { id: 4, text: "Talking with a group of people helps you think of good ideas faster.", axis: "energy", polarity: "E" },
-  { id: 5, text: "You like to think quietly by yourself before you tell others your ideas.", axis: "energy", polarity: "I" },
-  { id: 6, text: "You get bored quickly if you spend the whole weekend alone without seeing friends.", axis: "energy", polarity: "E" },
-  { id: 7, text: "You work best when you are alone in a quiet place.", axis: "energy", polarity: "I" },
-  { id: 8, text: "You like being the leader and talking in front of a group of people.", axis: "energy", polarity: "E" },
-  { id: 9, text: "You like to write or draw your ideas instead of talking out loud.", axis: "energy", polarity: "I" },
+const personalityDimensions = [
+  {
+    key: "energy",
+    label: "Energy",
+    left: { code: "I", name: "Introverted" },
+    right: { code: "E", name: "Extraverted" }
+  },
+  {
+    key: "mind",
+    label: "Mind",
+    left: { code: "N", name: "Intuitive" },
+    right: { code: "S", name: "Observant" }
+  },
+  {
+    key: "nature",
+    label: "Nature",
+    left: { code: "T", name: "Thinking" },
+    right: { code: "F", name: "Feeling" }
+  },
+  {
+    key: "tactics",
+    label: "Tactics",
+    left: { code: "J", name: "Judging" },
+    right: { code: "P", name: "Prospecting" }
+  },
+  {
+    key: "identity",
+    label: "Identity",
+    left: { code: "A", name: "Assertive" },
+    right: { code: "T", name: "Turbulent" }
+  }
+];
 
-  // Style axis (Analysts / Diplomats / Sentinels / Explorers)
-  { id: 10, text: "When you make a choice, facts are more important to you than feelings.", axis: "style", group: "Analysts", variant: "structured" },
-  { id: 11, text: "You easily notice when someone else is feeling sad or left out.", axis: "style", group: "Diplomats", variant: "structured" },
-  { id: 12, text: "You like having a clear plan and keeping your life very organized.", axis: "style", group: "Sentinels", variant: "structured" },
-  { id: 13, text: "You like doing fun things without planning them first.", axis: "style", group: "Explorers", variant: "open" },
-  { id: 14, text: "You like to ask questions and learn about new or different things.", axis: "style", group: "Analysts", variant: "open" },
-  { id: 15, text: "Being kind and keeping everyone happy is the most important thing to you.", axis: "style", group: "Diplomats", variant: "open" },
-  { id: 16, text: "People can always trust you to take care of the ones you love.", axis: "style", group: "Sentinels", variant: "open" },
-  { id: 17, text: "You like using your hands to fix problems or build things.", axis: "style", group: "Explorers", variant: "structured" },
-  { id: 18, text: "When things get stressful, you stay calm and just look for a way to fix it.", axis: "style", group: "Analysts", variant: "structured" },
-  { id: 19, text: "You always follow your heart and do what you believe is right.", axis: "style", group: "Diplomats", variant: "open" }
+const questions = [
+  // ========================================================
+  // Section 1 – Energy (Introverted [left] / Extraverted [right])
+  // ========================================================
+  { id: 0, dimension: "energy", trait: "E", side: "right", weight: 1.0, text: "You feel more energised after spending time with a group of people." },
+  { id: 1, dimension: "energy", trait: "I", side: "left", weight: 1.0, text: "After a busy social event, you usually need some time alone to recharge." },
+  { id: 2, dimension: "energy", trait: "E", side: "right", weight: 1.0, text: "Given the choice, you would rather spend your free time with friends than by yourself." },
+  { id: 3, dimension: "energy", trait: "I", side: "left", weight: 1.0, text: "You prefer observing a conversation before joining in." },
+  { id: 4, dimension: "energy", trait: "E", side: "right", weight: 1.0, text: "Starting a conversation with someone you have just met feels natural to you." },
+  { id: 5, dimension: "energy", trait: "I", side: "left", weight: 1.0, text: "You often prefer expressing your thoughts privately rather than discussing them immediately." },
+  { id: 6, dimension: "energy", trait: "E", side: "right", weight: 1.0, text: "Being around people for long periods usually leaves you feeling energised." },
+  { id: 7, dimension: "energy", trait: "I", side: "left", weight: 1.0, text: "You find it easier to concentrate when you are working independently." },
+  { id: 8, dimension: "energy", trait: "E", side: "right", weight: 1.0, text: "When something exciting happens, your first instinct is to share it with someone." },
+  { id: 9, dimension: "energy", trait: "I", side: "left", weight: 1.0, text: "You are comfortable spending an entire day without much social interaction." },
+  { id: 10, dimension: "energy", trait: "E", side: "right", weight: 1.0, text: "In group discussions, you naturally find yourself contributing ideas." },
+  { id: 11, dimension: "energy", trait: "I", side: "left", weight: 1.0, text: "You prefer having a small number of meaningful conversations over interacting with many people." },
+
+  // ========================================================
+  // Section 2 – Mind (Intuitive [left] / Observant [right])
+  // ========================================================
+  { id: 12, dimension: "mind", trait: "N", side: "left", weight: 1.0, text: "You often imagine different possibilities beyond what is immediately in front of you." },
+  { id: 13, dimension: "mind", trait: "S", side: "right", weight: 1.0, text: "When learning something new, you prefer practical examples over abstract explanations." },
+  { id: 14, dimension: "mind", trait: "N", side: "left", weight: 1.0, text: "You enjoy exploring ideas even when they have no immediate practical use." },
+  { id: 15, dimension: "mind", trait: "S", side: "right", weight: 1.0, text: "You usually pay close attention to specific facts and details." },
+  { id: 16, dimension: "mind", trait: "N", side: "left", weight: 1.0, text: "You tend to look for hidden meanings or connections between seemingly unrelated things." },
+  { id: 17, dimension: "mind", trait: "S", side: "right", weight: 1.0, text: "You trust information more when it comes from direct experience." },
+  { id: 18, dimension: "mind", trait: "N", side: "left", weight: 1.0, text: "Thinking about what the future could look like excites you more than focusing on present routines." },
+  { id: 19, dimension: "mind", trait: "S", side: "right", weight: 1.0, text: "You prefer instructions that clearly explain what needs to be done step by step." },
+  { id: 20, dimension: "mind", trait: "N", side: "left", weight: 1.0, text: "You often think about the bigger picture before considering individual details." },
+  { id: 21, dimension: "mind", trait: "S", side: "right", weight: 1.0, text: "You are more interested in what is real and observable than in theoretical possibilities." },
+  { id: 22, dimension: "mind", trait: "N", side: "left", weight: 1.0, text: "You enjoy experimenting with unusual ideas and alternative ways of understanding things." },
+  { id: 23, dimension: "mind", trait: "S", side: "right", weight: 1.0, text: "You prefer dealing with familiar methods that have already proved effective." },
+
+  // ========================================================
+  // Section 3 – Nature (Thinking [left] / Feeling [right])
+  // ========================================================
+  { id: 24, dimension: "nature", trait: "T", side: "left", weight: 1.0, text: "When making an important decision, logical consistency matters more to you than personal feelings." },
+  { id: 25, dimension: "nature", trait: "F", side: "right", weight: 1.0, text: "You consider how a decision might affect other people's emotions before making it." },
+  { id: 26, dimension: "nature", trait: "T", side: "left", weight: 1.0, text: "You prefer giving honest feedback, even when it may be uncomfortable to hear." },
+  { id: 27, dimension: "nature", trait: "F", side: "right", weight: 1.0, text: "Maintaining harmony between people is important to you, even when disagreements arise." },
+  { id: 28, dimension: "nature", trait: "T", side: "left", weight: 1.0, text: "You believe decisions should be based on objective facts rather than personal preferences." },
+  { id: 29, dimension: "nature", trait: "F", side: "right", weight: 1.0, text: "You find it difficult to ignore someone's feelings when discussing a problem." },
+  { id: 30, dimension: "nature", trait: "T", side: "left", weight: 1.0, text: "When resolving a disagreement, you focus more on finding the most logical solution." },
+  { id: 31, dimension: "nature", trait: "F", side: "right", weight: 1.0, text: "You often adjust the way you communicate to avoid hurting someone's feelings." },
+  { id: 32, dimension: "nature", trait: "T", side: "left", weight: 1.0, text: "You respect decisions that follow consistent principles, even when people disagree with them." },
+  { id: 33, dimension: "nature", trait: "F", side: "right", weight: 1.0, text: "Personal values play a major role in the choices you make." },
+  { id: 34, dimension: "nature", trait: "T", side: "left", weight: 1.0, text: "You can separate your emotions from a situation when evaluating what is fair." },
+  { id: 35, dimension: "nature", trait: "F", side: "right", weight: 1.0, text: "Understanding someone's personal circumstances is important before judging their actions." },
+
+  // ========================================================
+  // Section 4 – Tactics (Judging [left] / Prospecting [right])
+  // ========================================================
+  { id: 36, dimension: "tactics", trait: "J", side: "left", weight: 1.0, text: "You prefer having a clear plan before starting an important task." },
+  { id: 37, dimension: "tactics", trait: "P", side: "right", weight: 1.0, text: "You enjoy keeping your options open instead of deciding everything in advance." },
+  { id: 38, dimension: "tactics", trait: "J", side: "left", weight: 1.0, text: "Completing tasks ahead of deadlines gives you a sense of satisfaction." },
+  { id: 39, dimension: "tactics", trait: "P", side: "right", weight: 1.0, text: "You are comfortable changing your plans when something more interesting comes up." },
+  { id: 40, dimension: "tactics", trait: "J", side: "left", weight: 1.0, text: "An organised schedule helps you feel in control of your day." },
+  { id: 41, dimension: "tactics", trait: "P", side: "right", weight: 1.0, text: "You prefer deciding what to do as the situation develops." },
+  { id: 42, dimension: "tactics", trait: "J", side: "left", weight: 1.0, text: "You feel uncomfortable when important tasks remain unfinished." },
+  { id: 43, dimension: "tactics", trait: "P", side: "right", weight: 1.0, text: "You enjoy exploring different approaches rather than committing to one method immediately." },
+  { id: 44, dimension: "tactics", trait: "J", side: "left", weight: 1.0, text: "You usually make decisions early so that you can move forward without uncertainty." },
+  { id: 45, dimension: "tactics", trait: "P", side: "right", weight: 1.0, text: "Unexpected changes to your plans can sometimes feel exciting." },
+  { id: 46, dimension: "tactics", trait: "J", side: "left", weight: 1.0, text: "You prefer knowing what to expect before entering a new situation." },
+  { id: 47, dimension: "tactics", trait: "P", side: "right", weight: 1.0, text: "You work best when you have the freedom to adapt your approach along the way." },
+
+  // ========================================================
+  // Section 5 – Identity (Assertive [left] / Turbulent [right])
+  // ========================================================
+  { id: 48, dimension: "identity", trait: "A", side: "left", weight: 1.0, text: "You generally remain confident in your decisions, even when others question them." },
+  { id: 49, dimension: "identity", trait: "T", side: "right", weight: 1.0, text: "You often replay past mistakes in your mind and wonder what you could have done differently." },
+  { id: 50, dimension: "identity", trait: "A", side: "left", weight: 1.0, text: "Criticism rarely affects your confidence for very long." },
+  { id: 51, dimension: "identity", trait: "T", side: "right", weight: 1.0, text: "You sometimes worry about whether you are meeting your own expectations." },
+  { id: 52, dimension: "identity", trait: "A", side: "left", weight: 1.0, text: "Even when things go wrong, you usually trust yourself to handle the situation." },
+  { id: 53, dimension: "identity", trait: "T", side: "right", weight: 1.0, text: "You frequently compare your progress with the progress of others." },
+  { id: 54, dimension: "identity", trait: "A", side: "left", weight: 1.0, text: "You can move on from a setback without letting it affect your overall self-confidence." },
+  { id: 55, dimension: "identity", trait: "T", side: "right", weight: 1.0, text: "You tend to overthink decisions after making them." },
+  { id: 56, dimension: "identity", trait: "A", side: "left", weight: 1.0, text: "You usually feel comfortable with who you are, even when you make mistakes." },
+  { id: 57, dimension: "identity", trait: "T", side: "right", weight: 1.0, text: "Small setbacks can sometimes make you question your abilities." },
+  { id: 58, dimension: "identity", trait: "A", side: "left", weight: 1.0, text: "You rarely feel the need to prove your worth to other people." },
+  { id: 59, dimension: "identity", trait: "T", side: "right", weight: 1.0, text: "You often push yourself because you feel that you could be doing better." }
 ];
 
 // 7-point scale (+3 to -3)

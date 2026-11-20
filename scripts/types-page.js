@@ -71,3 +71,22 @@ window.filterTypes = function (categoryValue, btnEl) {
 })();
 
 renderPersonalityTypesDirectory("ALL");
+
+let charObserver;
+
+function observeVisibleCharacters() {
+  if (charObserver) charObserver.disconnect();
+  const cards = document.querySelectorAll(".char-float");
+  if (!("IntersectionObserver" in window)) return;
+
+  charObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle("is-offscreen", !entry.isIntersecting);
+      });
+    },
+    { rootMargin: "120px 0px" }
+  );
+
+  cards.forEach(card => charObserver.observe(card));
+}

@@ -66,6 +66,8 @@
 .category-banner-section {
   position: relative;
   margin-bottom: 6rem;
+  content-visibility: auto;
+  contain-intrinsic-size: 720px;
 }
 
 .category-header {
@@ -94,16 +96,16 @@
   background-clip: text;
   -webkit-mask-image: linear-gradient(180deg, #000 18%, transparent 80%);
   mask-image: linear-gradient(180deg, #000 18%, transparent 80%);
-  animation: wordShine 9s ease-in-out infinite alternate;
+  /* animation: wordShine 9s ease-in-out infinite alternate; */
   pointer-events: none;
   user-select: none;
 }
 
-@keyframes wordShine {
+/* @keyframes wordShine {
   to {
     background-position: 100% 0;
   }
-}
+} */
 
 /* small "01 · 4 types" chip */
 .category-eyebrow {

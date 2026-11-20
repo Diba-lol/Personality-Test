@@ -102,7 +102,6 @@
 
 /* big number on the right */
 .question-item::after {
-  content: counter(qn, decimal-leading-zero);
   content: attr(data-num);
   position: absolute;
   right: 1.25rem;
@@ -614,6 +613,391 @@
   .question-item[class*="slide-"] *,
   .question-item.leave-next,
   .question-item.leave-prev {
+    animation: none !important;
+  }
+}
+
+/* ========================================================
+   5-PART STEPPER, PART BANNER & CARD GROUP ANIMATIONS
+   ======================================================== */
+
+/* ---------- 5-Part Stepper inside sticky header ---------- */
+/* ---------- Minimalist Glass Segmented 5-Part Stepper ---------- */
+.part-stepper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  padding: 4px;
+  margin: 0.45rem 0 0.85rem;
+  border-radius: 999px;
+  background: rgba(241, 245, 249, 0.85);
+  border: 1px solid #e6ebfb;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.part-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.46rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.part-step:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.part-step-dot {
+  width: 19px;
+  height: 19px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: rgba(148, 163, 184, 0.16);
+  color: #64748b;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* Unlocked (visited) part */
+.part-step.is-unlocked {
+  color: #475569;
+}
+
+.part-step:not(:disabled):not(.is-active):hover {
+  background: rgba(255, 255, 255, 0.65);
+  color: #1e293b;
+}
+
+/* Completed part */
+.part-step.is-complete {
+  color: #334155;
+}
+
+.part-step.is-complete .part-step-dot {
+  background: rgba(16, 185, 129, 0.14);
+  color: #059669;
+}
+
+/* Active part: crisp elevated white pill */
+.part-step.is-active {
+  background: #ffffff;
+  border-color: rgba(226, 232, 240, 0.9);
+  color: #0f172a;
+  font-weight: 700;
+  box-shadow:
+    0 4px 12px -4px rgba(79, 70, 229, 0.22),
+    0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.part-step.is-active .part-step-dot {
+  background: linear-gradient(135deg, #7C63F6, #3b82f6);
+  color: #ffffff;
+  box-shadow: 0 3px 8px -2px rgba(99, 102, 241, 0.55);
+}
+
+.part-step:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.part-step-dot {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: #e2e8f0;
+  color: #64748b;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.part-step.is-unlocked {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+
+.part-step.is-complete {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+  color: #4f46e5;
+}
+
+.part-step.is-complete .part-step-dot {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.part-step.is-active {
+  background: linear-gradient(90deg, #7C63F6, #3b82f6);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 8px 18px -8px rgba(79, 70, 229, 0.75);
+}
+
+.part-step.is-active .part-step-dot {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.part-step:not(:disabled):not(.is-active):hover {
+  transform: translateY(-1px);
+  border-color: #a5b4fc;
+  color: #4338ca;
+}
+
+/* ---------- Part Banner ---------- */
+.part-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 20px;
+  background:
+    radial-gradient(280px 120px at 0% 0%, rgba(124, 99, 246, 0.12), transparent 70%),
+    radial-gradient(260px 120px at 100% 100%, rgba(56, 189, 248, 0.12), transparent 70%),
+    rgba(255, 255, 255, 0.92);
+  border: 1px solid #e0e7ff;
+  box-shadow: 0 12px 26px -18px rgba(79, 70, 229, 0.45);
+  animation: partBannerIn 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes partBannerIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.part-pill {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #4f46e5;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 0.35rem;
+}
+
+.part-banner-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.part-banner-sub {
+  font-size: 0.88rem;
+  color: #64748b;
+  margin-top: 0.2rem;
+}
+
+.part-banner-stat {
+  flex: none;
+  text-align: right;
+  padding: 0.6rem 0.95rem;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.part-range {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.part-done-count {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #4f46e5;
+}
+
+/* ---------- Answered check pill inside each card ---------- */
+.q-top {
+  justify-content: space-between;
+}
+
+.q-check {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #059669;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+.question-item.answered .q-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ---------- Snappy, Smooth Part Transitions ---------- */
+.part-banner.banner-pop {
+  animation: partBannerIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.questions-list.part-enter-next .part-card {
+  animation: partCardInNext 0.32s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 35ms);
+}
+
+.questions-list.part-enter-prev .part-card {
+  animation: partCardInPrev 0.32s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 35ms);
+}
+
+@keyframes partCardInNext {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes partCardInPrev {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.questions-list.part-leave-next,
+.questions-list.part-leave-prev {
+  animation: partOutFast 0.11s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes partOutFast {
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+/* ---------- Highlight & shake if user skips a question ---------- */
+.question-item.needs-answer {
+  border-color: #f43f5e;
+  box-shadow:
+    0 0 0 4px rgba(244, 63, 94, 0.14),
+    0 18px 34px -20px rgba(244, 63, 94, 0.45);
+  animation: gentleShake 0.42s ease !important;
+}
+
+@keyframes gentleShake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  22% {
+    transform: translateX(-7px);
+  }
+
+  45% {
+    transform: translateX(7px);
+  }
+
+  68% {
+    transform: translateX(-4px);
+  }
+
+  85% {
+    transform: translateX(4px);
+  }
+}
+
+.part-alert {
+  max-width: 520px;
+  margin: 0 auto 0.5rem;
+  padding: 0.7rem 1.1rem;
+  text-align: center;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #be123c;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  border-radius: 14px;
+}
+
+/* ---------- Mobile adjustments ---------- */
+@media (max-width: 600px) {
+  .part-step-label {
+    display: none;
+  }
+
+  .part-step {
+    padding: 0.35rem;
+  }
+
+  .part-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1.1rem;
+  }
+
+  .part-banner-stat {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .part-banner,
+  .questions-list.part-enter-next .part-card,
+  .questions-list.part-enter-prev .part-card,
+  .questions-list.part-leave-next,
+  .questions-list.part-leave-prev,
+  .question-item.needs-answer {
     animation: none !important;
   }
 }

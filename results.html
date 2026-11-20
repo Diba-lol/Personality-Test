@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Healer | Your Personality Result</title>
+  <link rel="stylesheet" href="./styles/base.css" />
+  <link rel="stylesheet" href="./styles/results.css" />
+  <link rel="stylesheet" href="./styles/characters.css" />
+</head>
+
+<body>
+
+  <a href="index.html" class="floating-home-btn">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1V9.5z" />
+    </svg>
+    <span>Home</span>
+  </a>
+
+  <main id="resultsScreen" class="results-container">
+
+    <!-- HERO SPLIT: CHARACTER LEFT + 5-DIMENSION BREAKDOWN RIGHT -->
+    <section class="results-hero-grid">
+
+      <!-- LEFT COLUMN: PERSONALITY CHARACTER SHOWCASE -->
+      <header class="results-header results-hero-left">
+        <span id="dominantEnergyBadge" class="energy-main-pill"></span>
+        <h1 id="resultTypeTitle" class="result-title"></h1>
+        <p id="resultRoleGroup" class="result-group-subtitle"></p>
+
+        <!-- UPGRADED ANIMATED CHARACTER STAGE -->
+        <div class="hero-character-showcase">
+          <div class="hero-aura-backdrop" aria-hidden="true">
+            <span class="aura-nebula"></span>
+            <span class="aura-portal-orb"></span>
+            <span class="aura-ring-outer"></span>
+            <span class="aura-ring-inner"></span>
+            <span class="aura-pedestal"></span>
+            <span class="aura-mote m1"></span>
+            <span class="aura-mote m2"></span>
+            <span class="aura-mote m3"></span>
+            <span class="aura-mote m4"></span>
+          </div>
+
+          <div id="characterStage" class="fullbody-character-stage"></div>
+        </div>
+
+        <p id="resultTypeTagline" class="result-tagline"></p>
+      </header>
+
+      <!-- RIGHT COLUMN: FIVE PERSONALITY DIMENSIONS BREAKDOWN -->
+      <div class="results-card ie-highlight-card results-hero-right">
+        <h3 class="card-heading">5-Dimension Personality Breakdown</h3>
+        <div id="dimensionsContainer" class="dimensions-list"></div>
+        <p id="ieSummaryText" class="ie-summary-note"></p>
+      </div>
+
+    </section>
+
+    <!-- 2. KEY FEATURES (CLEAN 4 PILLS) -->
+    <div class="results-card">
+      <h3 class="card-heading">Key Features &amp; Core Traits</h3>
+      <div id="keyFeaturesGrid" class="key-features-grid"></div>
+    </div>
+
+    <!-- 3. STRENGTHS & WEAKNESSES PREMIUM CARDS -->
+    <div class="sw-grid">
+      <article class="results-card sw-card sw-strengths">
+        <div class="sw-header">
+          <div class="sw-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.3 6.7 19.1l1-5.8-4.2-4.1 5.9-.9L12 3z" />
+            </svg>
+          </div>
+          <div class="sw-heading-group">
+            <span class="sw-kicker">What Drives You</span>
+            <h3 class="sw-title">Core Strengths</h3>
+          </div>
+        </div>
+        <ul id="strengthsList" class="sw-list"></ul>
+      </article>
+
+      <article class="results-card sw-card sw-weaknesses">
+        <div class="sw-header">
+          <div class="sw-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 8v4M12 16h.01" />
+            </svg>
+          </div>
+          <div class="sw-heading-group">
+            <span class="sw-kicker">Growth Zones</span>
+            <h3 class="sw-title">Weaknesses</h3>
+          </div>
+        </div>
+        <ul id="weaknessesList" class="sw-list"></ul>
+      </article>
+    </div>
+
+    <!-- 4. BUTTON TO EXPLORE ALL PERSONALITY TYPES -->
+    <div class="results-card explore-cta-banner">
+      <div class="explore-cta-text">
+        <h3>Explore All Personality Types</h3>
+        <p>View all 16 personality archetypes and animated characters across Analysts, Diplomats, Sentinels, and Explorers.</p>
+      </div>
+      <div class="results-actions-row">
+        <a href="personality-types.html" class="btn-start-gradient"
+          style="text-decoration: none; display: inline-block;">
+          View All Personality Types &rarr;
+        </a>
+        <a href="index.html" class="btn-secondary">Retake Test</a>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="./scripts/types-data.js"></script>
+  <script src="./scripts/questions.js"></script>
+  <script src="./scripts/results.js"></script>
+</body>
+
+</html>

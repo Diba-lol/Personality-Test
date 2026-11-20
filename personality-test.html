@@ -7,8 +7,6 @@
   <title>Healer | Personality Assessment Test</title>
   <link rel="stylesheet" href="./styles/base.css" />
   <link rel="stylesheet" href="./styles/quiz.css" />
-  <link rel="stylesheet" href="./styles/results.css" />
-  <link rel="stylesheet" href="./styles/characters.css" />
 </head>
 
 <body>
@@ -24,14 +22,18 @@
   <!-- ================= QUIZ SCREEN ================= -->
   <main id="quizScreen" class="quiz-container">
 
-    <!-- Sticky Progress Header -->
+    <!-- Sticky Progress & 5-Part Stepper Header -->
     <header class="quiz-header">
       <div class="quiz-brand-mini">
         <img src="./images/healer-logo.webp" alt="Healer Logo" class="brand-logo-small" />
         <span>Healer Assessment Engine</span>
       </div>
+
+      <!-- 5 Parts Stepper -->
+      <nav id="partStepper" class="part-stepper" aria-label="Assessment parts"></nav>
+
       <div class="progress-info">
-        <span id="progressText">Progress: 0 / 20 answered</span>
+        <span id="progressText">Progress: 0 / 60 answered</span>
         <span id="progressPercent">0%</span>
       </div>
       <div class="progress-bar-track">
@@ -39,10 +41,16 @@
       </div>
     </header>
 
-    <!-- One question at a time -->
+    <!-- Current Part Header Banner -->
+    <div id="partBanner" class="part-banner"></div>
+
+    <!-- 12 Question Cards for the Active Part -->
     <section id="questionsContainer" class="questions-list"></section>
 
-    <!-- Previous / Finish -->
+    <!-- Helpful reminder if a question in this part is skipped -->
+    <p id="partAlert" class="part-alert" role="alert" hidden></p>
+
+    <!-- Part Navigation -->
     <div class="quiz-nav">
       <button id="prevBtn" class="btn-prev" type="button" hidden>
         <span class="prev-icon" aria-hidden="true">
@@ -50,78 +58,21 @@
             <path d="M15 6l-6 6 6 6" />
           </svg>
         </span>
-        <span>Previous</span>
+        <span>Previous Part</span>
       </button>
-      <button id="submitQuizBtn" class="btn-start-gradient" type="button" hidden disabled>Complete &amp; View Results
-        &rarr;</button>
+
+      <button id="nextBtn" class="btn-start-gradient btn-next" type="button">
+        Next Part &rarr;
+      </button>
+
+      <button id="submitQuizBtn" class="btn-start-gradient" type="button" hidden>
+        Complete &amp; View Results &rarr;
+      </button>
     </div>
   </main>
 
-  <!-- ================= CLEAN RESULTS SCREEN (REPLACE OLD RESULTS SECTION WITH THIS) ================= -->
-  <section id="resultsScreen" class="results-container" style="display: none;">
-
-    <header class="results-header">
-      <span id="dominantEnergyBadge" class="energy-main-pill">INTROVERT PERSONALITY</span>
-      <h1 id="resultTypeTitle" class="result-title">The Visionary Architect</h1>
-      <p id="resultRoleGroup" class="result-group-subtitle">Analyst Archetype • Strategic &amp; Independent</p>
-
-      <!-- FULL-BODY ANIMATED CHARACTER -->
-      <div id="characterStage" class="fullbody-character-stage"></div>
-
-      <p id="resultTypeTagline" class="result-tagline"></p>
-    </header>
-
-    <!-- 1. INTROVERT VS EXTROVERT PERCENTAGE BAR -->
-    <div class="results-card ie-highlight-card">
-      <h3 class="card-heading">Energy Orientation: Introvert vs. Extrovert</h3>
-
-      <div class="ie-score-labels">
-        <div class="ie-stat-box">
-          <span class="ie-title intro-color">Introvert</span>
-          <strong id="introvertPctText" class="ie-big-num intro-color">65%</strong>
-        </div>
-        <div class="ie-stat-box" style="text-align: right;">
-          <span class="ie-title extro-color">Extrovert</span>
-          <strong id="extrovertPctText" class="ie-big-num extro-color">35%</strong>
-        </div>
-      </div>
-
-      <div class="ie-meter-track">
-        <div id="introvertBar" class="ie-bar-intro" style="width: 65%;"></div>
-        <div id="extrovertBar" class="ie-bar-extro" style="width: 35%;"></div>
-      </div>
-
-      <p id="ieSummaryText" class="ie-summary-note"></p>
-    </div>
-
-    <!-- 2. KEY FEATURES (CLEAN 4 PILLS) -->
-    <div class="results-card">
-      <h3 class="card-heading">Key Features &amp; Core Traits</h3>
-      <div id="keyFeaturesGrid" class="key-features-grid"></div>
-    </div>
-
-    <!-- 3. BUTTON TO EXPLORE ALL PERSONALITY TYPES -->
-    <div class="results-card explore-cta-banner">
-      <div class="explore-cta-text">
-        <h3>Explore All Personality Types</h3>
-        <p>View all 8 Introvert and Extrovert animated characters across Analysts, Diplomats, Sentinels, and Explorers.
-        </p>
-      </div>
-      <div class="results-actions-row">
-        <a href="personality-types.html" class="btn-start-gradient"
-          style="text-decoration: none; display: inline-block;">
-          View All Personality Types &rarr;
-        </a>
-        <a href="index.html" class="btn-secondary">Retake Test</a>
-      </div>
-    </div>
-
-  </section>
-
-  <script src="./scripts/types-data.js"></script>
   <script src="./scripts/questions.js"></script>
   <script src="./scripts/quiz.js"></script>
-  <script src="./scripts/results.js"></script>
 </body>
 
 </html>

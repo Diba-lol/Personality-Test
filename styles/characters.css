@@ -16,7 +16,6 @@
   /* tilt + lift are controlled by --rx --ry --lift --sc (smooth) */
   transform: perspective(900px) translateY(var(--lift, 0px)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--sc, 1));
   transition: transform .45s cubic-bezier(.2, .8, .2, 1);
-  will-change: transform;
 }
 
 /* ---------- glass orb behind the character ---------- */
@@ -56,7 +55,7 @@
       #fff 100%);
   -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
   mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
-  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--acc) 80%, transparent));
+  /* filter: drop-shadow(0 0 6px color-mix(in srgb, var(--acc) 80%, transparent)); */
   transform: translate3d(-50%, 0, -60px) rotate(0deg);
   animation: ringSweep 7s linear infinite;
   opacity: .9;
@@ -88,7 +87,7 @@
   height: 13px;
   background: var(--acc);
   clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
-  filter: drop-shadow(0 0 5px var(--acc));
+  /* filter: drop-shadow(0 0 5px var(--acc)); */
   animation: twinkle 3.2s ease-in-out infinite;
 }
 
@@ -170,4 +169,12 @@
   .fullbody-character-stage::after {
     animation: none !important;
   }
+}
+
+/* Pause animations for characters scrolled off-screen */
+.char-float.is-offscreen .char-img,
+.char-float.is-offscreen .spark,
+.char-float.is-offscreen .fullbody-character-stage::before,
+.char-float.is-offscreen .fullbody-character-stage::after {
+  animation-play-state: paused;
 }
